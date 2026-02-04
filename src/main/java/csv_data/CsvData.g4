@@ -1,0 +1,20 @@
+grammar CsvData;
+
+prule: NOCONTROL COMMA NOMBRE COMMA CARRERA COMMA SEMESTRE COMMA GENERO COMMA EDAD COMMA PROMEDIO;
+
+NOCONTROL: DIGIT DIGIT '09' DIGIT DIGIT DIGIT DIGIT;
+GENERO: 'F' | 'M';
+PROMEDIO: DIGIT DIGIT '.' DIGIT DIGIT;
+NOMBRE: UPPER LOWER*;
+CARRERA:[a-zA-Z ]+;
+SEMESTRE: '1' | '2' | '3' | '4' | '5' | '6'| '7' | '8' | '9' | '10' | '11' | '12';
+EDAD: '18' | '19' | '20' | '21' | '22' | '23';
+
+
+
+COMMA : ',' ;
+UPPER : [A-Z] ;
+LOWER : [a-z] ;
+DIGIT : [0-9] ;
+
+WS : [ \t\r\n]+ -> skip ;
