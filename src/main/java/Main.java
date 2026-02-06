@@ -1,5 +1,8 @@
-import csv_data.CsvDataLexer;
-import csv_data.CsvDataParser;
+import calc.CalcLexer;
+
+import calc.CalcParser;
+
+import calc.MyVisitor;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -18,13 +21,16 @@ void main() {
 
         try {
             CharStream inputStream = CharStreams.fromString(input);
-            CsvDataLexer lexer = new CsvDataLexer(inputStream);
+            CalcLexer lexer = new CalcLexer(inputStream);
 
             CommonTokenStream tokens = new CommonTokenStream(lexer);
-            CsvDataParser parser = new CsvDataParser(tokens);
+            CalcParser parser = new CalcParser(tokens);
 
 
-            ParseTree tree = parser.prule(); // cambia "rule" por tu regla inicial
+            ParseTree tree = parser.p(); // cambia "rule" por tu regla inicial
+            MyVisitor visitor = new MyVisitor();
+            Integer resultado = visitor.visit(tree);
+            System.out.println(resultado);
 
             IO.println(tree.toStringTree(parser));
 
