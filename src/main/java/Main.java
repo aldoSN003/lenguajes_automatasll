@@ -1,8 +1,10 @@
+import bool.BoolLexer;
+import bool.BoolParser;
 import calc.CalcLexer;
 
 import calc.CalcParser;
 
-import calc.MyVisitor;
+import bool.MyVisitor;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -21,16 +23,29 @@ void main() {
 
         try {
             CharStream inputStream = CharStreams.fromString(input);
-            CalcLexer lexer = new CalcLexer(inputStream);
+            BoolLexer lexer = new BoolLexer(inputStream);
 
             CommonTokenStream tokens = new CommonTokenStream(lexer);
-            CalcParser parser = new CalcParser(tokens);
+            BoolParser parser = new BoolParser(tokens);
 
 
             ParseTree tree = parser.p(); // cambia "rule" por tu regla inicial
             MyVisitor visitor = new MyVisitor();
             Integer resultado = visitor.visit(tree);
-            System.out.println(resultado);
+            String msg ="";
+            switch (resultado) {
+                case 0:
+                    System.out.println("false");
+                    break;
+                case 1:
+                    System.out.println("true");
+                    break;
+                case 2:
+                    System.out.println("ERROR: Las variables deben coincidir");
+                    break;
+            }
+
+            System.out.println(msg);
 
             IO.println(tree.toStringTree(parser));
 
