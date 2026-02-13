@@ -1,17 +1,10 @@
-import abc.AbcLexer;
-import abc.AbcParser;
-import abc.MyVisitorAbc;
-import bool.BoolLexer;
-import bool.BoolParser;
-
-
-
-import boolSum.BoolSumLexer;
-import boolSum.BoolSumParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import parentheses.MyVisitorParentheses;
+import parentheses.ParenthesesLexer;
+import parentheses.ParenthesesParser;
 
 void main() {
     Scanner scanner = new Scanner(System.in);
@@ -26,14 +19,14 @@ void main() {
 
         try {
             CharStream inputStream = CharStreams.fromString(input);
-            AbcLexer lexer = new AbcLexer(inputStream);
+            ParenthesesLexer lexer = new ParenthesesLexer(inputStream);
 
             CommonTokenStream tokens = new CommonTokenStream(lexer);
-            AbcParser parser = new AbcParser(tokens);
+            ParenthesesParser parser = new ParenthesesParser(tokens);
 
 
             ParseTree tree = parser.mrule(); // cambia "rule" por tu regla inicial
-            MyVisitorAbc visitor = new MyVisitorAbc();
+            MyVisitorParentheses visitor = new MyVisitorParentheses();
             Integer resultado = visitor.visit(tree);
             System.out.println(resultado);
 //            String msg ="";
