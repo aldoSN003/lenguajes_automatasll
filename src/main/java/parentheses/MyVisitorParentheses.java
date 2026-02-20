@@ -1,21 +1,34 @@
 package parentheses;
 
-public class MyVisitorParentheses extends ParenthesesBaseVisitor<Integer>{
+public class MyVisitorParentheses extends ParenthesesBaseVisitor<Integer> {
+
     @Override
     public Integer visitMrule(ParenthesesParser.MruleContext ctx) {
-        return super.visitMrule(ctx);
+
+        // Detect syntax errors recovered by ANTLR
+        if (ctx.exception != null) {
+            System.out.println("ERROR DE SINTAXIS");
+            return 0;
+        }
+
+        return visit(ctx.nested());
     }
 
     @Override
     public Integer visitNested(ParenthesesParser.NestedContext ctx) {
 
-        int countClose= ctx.CLOSE().size();
-        int countOpen= ctx.OPEN().size();
-        if(countOpen==countClose){
+        if (ctx.exception != null) {
+            System.out.println("ERROR DE SINTAXIS");
+            return 0;
+        }
+
+        int countOpen = ctx.OPEN().size();
+        int countClose = ctx.CLOSE().size();
+
+        if (countOpen == countClose) {
             System.out.println("CORRECTO");
             return 1;
-
-        }else{
+        } else {
             System.out.println("INCORRECTO");
             return 0;
         }

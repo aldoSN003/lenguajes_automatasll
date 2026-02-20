@@ -1,10 +1,9 @@
+import count_int.CountIntLexer;
+import count_int.CountIntParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import parentheses.MyVisitorParentheses;
-import parentheses.ParenthesesLexer;
-import parentheses.ParenthesesParser;
 
 void main() {
     Scanner scanner = new Scanner(System.in);
@@ -19,16 +18,16 @@ void main() {
 
         try {
             CharStream inputStream = CharStreams.fromString(input);
-            ParenthesesLexer lexer = new ParenthesesLexer(inputStream);
+            CountIntLexer lexer = new CountIntLexer(inputStream);
 
             CommonTokenStream tokens = new CommonTokenStream(lexer);
-            ParenthesesParser parser = new ParenthesesParser(tokens);
+            CountIntParser parser = new CountIntParser(tokens);
 
 
-            ParseTree tree = parser.mrule(); // cambia "rule" por tu regla inicial
-            MyVisitorParentheses visitor = new MyVisitorParentheses();
-            Integer resultado = visitor.visit(tree);
-            System.out.println(resultado);
+            ParseTree tree = parser.s(); // cambia "rule" por tu regla inicial
+           // MyVisitorCountInt visitor = new MyVisitorCountInt();
+         //Integer resultado = visitor.visit(tree);
+        // System.out.println(resultado);
 //            String msg ="";
 //            switch (resultado) {
 //                case 0:

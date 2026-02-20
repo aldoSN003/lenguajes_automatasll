@@ -1,0 +1,15 @@
+T__0=1
+T__1=2
+SEMICOLON=3
+EQUALS=4
+ID=5
+TYPE=6
+DOT=7
+FLOAT=8
+INT=9
+WS=10
+'int'=1
+'float'=2
+';'=3
+'='=4
+'.'=7

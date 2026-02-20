@@ -1,0 +1,5 @@
+INT=1
+COMMA=2
+SEMICOLON=3
+','=2
+';'=3
